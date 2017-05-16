@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-may-2017 12:56:37 by Hibernate Tools 3.6.0 -->
+<!-- Generated 16-may-2017 13:52:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo.Usuarios" table="usuarios" catalog="guarda_tu_password">
+    <class name="modelo.Usuarios" table="USUARIOS" catalog="guarda_tu_password" optimistic-lock="version">
         <id name="idInicio" type="java.lang.Integer">
             <column name="idInicio" />
             <generator class="identity" />
@@ -14,7 +14,7 @@
         <property name="passInicio" type="string">
             <column name="passInicio" length="50" not-null="true" unique="true" />
         </property>
-        <set name="cuentases" table="cuentas" inverse="true" lazy="true" fetch="select">
+        <set name="cuentases" table="CUENTAS" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="usuario" not-null="true" />
             </key>
