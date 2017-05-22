@@ -24,10 +24,10 @@ public class Inicio {
         //Usuarios usuario = new Usuarios("pepe", "pepe"); 
         //mu.guardaUsuario(usuario); 
 
-        //Cuentas cuenta = new Cuentas(usuario, "cuenta1", "cuenta1pass"); 
+        //Cuentas cuenta = new Cuentas(usuario, "cuenta1", "cuenta1pass", "Cuenta de pruebas de Pepe"); 
         //mu.guardaCuenta(cuenta); 
         Usuarios usuario1 = new Usuarios();
-        usuario1 = mu.obtenUsuario("juanfran");
+        usuario1 = mu.obtenUsuario("pepe");
         System.out.println("ID: " + usuario1.getIdInicio() + ", NOMBRE: " + usuario1.getNombreInicio() + ", PASSWORD: " + usuario1.getPassInicio());
 
         //mu.eliminaUsuario(usuario1);
@@ -39,7 +39,7 @@ public class Inicio {
         }*/
         
         Cuentas c = new Cuentas();
-        System.out.println(mu.obtenCuenta("githubjuanfran").getNombre());
+        System.out.println(mu.obtenCuenta("cuenta1").getDescripcion());
 
     }
 

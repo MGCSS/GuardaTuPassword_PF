@@ -1,5 +1,5 @@
 package modelo;
-// Generated 16-may-2017 13:52:02 by Hibernate Tools 4.3.1
+// Generated 22-may-2017 20:29:03 by Hibernate Tools 4.3.1
 
 
 
@@ -13,14 +13,16 @@ public class Cuentas  implements java.io.Serializable {
      private Usuarios usuarios;
      private String nombre;
      private String pass;
+     private String descripcion;
 
     public Cuentas() {
     }
 
-    public Cuentas(Usuarios usuarios, String nombre, String pass) {
+    public Cuentas(Usuarios usuarios, String nombre, String pass, String descripcion) {
        this.usuarios = usuarios;
        this.nombre = nombre;
        this.pass = pass;
+       this.descripcion = descripcion;
     }
    
     public Integer getId() {
@@ -50,6 +52,13 @@ public class Cuentas  implements java.io.Serializable {
     
     public void setPass(String pass) {
         this.pass = pass;
+    }
+    public String getDescripcion() {
+        return this.descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 
