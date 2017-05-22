@@ -31,46 +31,51 @@ public class ManejaUsuario {
         } finally {
             finalizaOperacion();
         }
-    }
-   /* public void eliminaExperto(Experto experto) {
+    }    
+    
+    public void guardaUsuario(Usuarios usuario) {
         try {
             inicioOperacion();
-            sesion.delete(experto);
-            System.out.println("Experto borrado correctamente");
+            sesion.save(usuario);
+            System.out.println("usuario insertado correctamente");
         } catch (HibernateException he) {
             throw he;
         } finally {
             finalizaOperacion();
         }
     }
-    public void actualizaExperto(Experto experto){
+
+    public void guardaCuenta(Cuentas cuenta) {
         try {
             inicioOperacion();
-            sesion.update(experto);
-            System.out.println("Experto actualizado correctamente");
+            sesion.save(cuenta);
+            System.out.println("cuenta insertada correctamente");
         } catch (HibernateException he) {
             throw he;
         } finally {
             finalizaOperacion();
         }
     }
-    public Experto obtenExperto(String idExperto){
+
+    public Usuarios obtenUsuario(Integer id) {
         try {
             inicioOperacion();
-            return (Experto) sesion.get(Experto.class, idExperto);
+            return (Usuarios) sesion.get(Usuarios.class, id);
         } catch (HibernateException he) {
             throw he;
         } finally {
             finalizaOperacion();
         }
     }
-    public void obtenNombresyEspecialidad() {
+
+    public void obtenCuentas(Integer idUsuario) {
         try {
             inicioOperacion();
-            List expertos = sesion.createCriteria(Experto.class).list();
-            for (int i = 0; i < expertos.size(); i++) {
-                System.out.println("Nombre: " + ((Experto) expertos.get(i)).getNombre()
-                        + ", Especialidad: " + ((Experto) expertos.get(i)).getEspecialidad());
+            String queryString = "SELECT * FROM cuentas c WHERE c.usuario='" + idUsuario + "'";
+            Query query = sesion.createSQLQuery(queryString);
+            List<Object[]> cuentas = query.list();
+            for (int i = 0; i < cuentas.size(); i++) {
+                System.out.println("Cuenta: " + cuentas.get(i)[2]);
             }
         } catch (HibernateException he) {
             throw he;
@@ -78,37 +83,6 @@ public class ManejaUsuario {
             finalizaOperacion();
         }
     }
-    public void listaConParametro(String keyword){
-        try {
-            inicioOperacion();
-            List expertos = sesion.createCriteria(Experto.class).add(Restrictions.like("especialidad",keyword)).list();
-            for (int i = 0; i < expertos.size(); i++) {
-                System.out.println("Nombre: " + ((Experto) expertos.get(i)).getNombre()
-                        + ", Especialidad: " + ((Experto) expertos.get(i)).getEspecialidad());
-            }
-        } catch (HibernateException he) {
-            throw he;
-        } finally {
-            finalizaOperacion();
-        }
-    }
-    public void obtenCasos(){
-        try {
-            inicioOperacion();
-                String queryString = "SELECT DISTINCT e.nombre, cp.nombre from caso_policial cp"
-                        +" INNER JOIN colabora c INNER JOIN experto e";
-                Query query = sesion.createSQLQuery(queryString);
-                List<Object[]> casos = query.list();
-                for(int i=0;i<casos.size();i++){
-            System.out.println("Nombre: "+casos.get(i)[0] + ", Caso: " + casos.get(i)[1]);
-                }
-            
-        } catch (HibernateException he) {
-            throw he;
-        } finally {
-            finalizaOperacion();
-        }
-    }*/
     public void finalizaOperacion(){
         tran.commit();
         sesion.close();    

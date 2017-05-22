@@ -20,16 +20,16 @@ public class Inicio {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        // TODO code application logic here
-        /*Time time = new Time(System.currentTimeMillis());
-        long inicio=time.getTime();
-        sleep(2505);
-        Time tfinal=new Time(System.currentTimeMillis());
-        long mfinal=tfinal.getTime();
-        System.out.println(mfinal-inicio);*/
-        ManejaUsuario me=new ManejaUsuario();
-        Usuarios usuario = new Usuarios("drap", "pass");
-        me.guardaExperto(usuario);
+        ManejaUsuario mu = new ManejaUsuario(); 
+        Usuarios usuario = new Usuarios("pepe", "pepe"); 
+        mu.guardaUsuario(usuario); 
+ 
+        Cuentas cuenta = new Cuentas(usuario, "cuenta1", "cuenta1pass"); 
+        mu.guardaCuenta(cuenta); 
+ 
+        Usuarios usuario1 = new Usuarios(); 
+        usuario = mu.obtenUsuario(1); 
+        System.out.println(usuario.getNombreInicio());
     }
     
 }
