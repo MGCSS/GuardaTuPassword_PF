@@ -98,7 +98,24 @@ public class ManejaUsuario {
             finalizaOperacion();
         }
     }
-
+    
+    public Boolean login(String nombre, String password){
+        try {
+            inicioOperacion();
+            String queryString = "SELECT * FROM usuarios u WHERE u.nombreInicio='" + nombre + "' AND u.passInicio='" + password + "'";
+            Query query = sesion.createSQLQuery(queryString);
+            List<Object[]> cuentas = query.list();
+            if(cuentas.isEmpty()){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (HibernateException he) {
+            throw he;
+        } finally {
+            finalizaOperacion();
+        }
+    }
     /**
      * Obtiene todas las cuentas almacenadas de un usuario.
      *

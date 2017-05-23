@@ -27,7 +27,7 @@ public class Inicio {
         //Cuentas cuenta = new Cuentas(usuario, "cuenta1", "cuenta1pass", "Cuenta de pruebas de Pepe"); 
         //mu.guardaCuenta(cuenta); 
         Usuarios usuario1 = new Usuarios();
-        usuario1 = mu.obtenUsuario("pepe");
+        usuario1 = mu.obtenUsuario("juan");
         System.out.println("ID: " + usuario1.getIdInicio() + ", NOMBRE: " + usuario1.getNombreInicio() + ", PASSWORD: " + usuario1.getPassInicio());
 
         //mu.eliminaUsuario(usuario1);
@@ -39,8 +39,11 @@ public class Inicio {
         }*/
         
         Cuentas c = new Cuentas();
-        System.out.println(mu.obtenCuenta("cuenta1").getDescripcion());
-
+        System.out.println(mu.obtenCuenta("githubjuan").getDescripcion());
+        
+        System.out.println(mu.login(usuario1.getNombreInicio(), usuario1.getPassInicio()));
+        
+        
     }
 
 }
