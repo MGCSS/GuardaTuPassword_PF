@@ -3,8 +3,7 @@ idInicio int not null AUTO_INCREMENT,
 nombreInicio varchar(50) not null,
 passInicio varchar(50) not null,
 CONSTRAINT clave PRIMARY KEY (idInicio),
-CONSTRAINT nombreUnico UNIQUE (nombreInicio),
-CONSTRAINT passUnico UNIQUE (passInicio));
+CONSTRAINT nombreUnico UNIQUE (nombreInicio));
 
 CREATE TABLE CUENTAS (
 id int not null AUTO_INCREMENT,
@@ -14,7 +13,6 @@ pass varchar(50) not null,
 descripcion varchar (100) not null,
 CONSTRAINT claveID PRIMARY KEY (id),
 CONSTRAINT nombreUnico2 UNIQUE (nombre),
-CONSTRAINT passUnico2 UNIQUE (pass),
 CONSTRAINT FKusuario FOREIGN KEY (usuario) REFERENCES USUARIOS (idInicio) on delete cascade);
 
 
