@@ -121,10 +121,11 @@ public class ManejaUsuario {
      *
      * @param idUsuario
      */
-    public List<Object[]> obtenCuentas(Integer idUsuario) {
+    public List<Object[]> obtenCuentas(Usuarios usuario) {
         try {
             inicioOperacion();
-            String queryString = "SELECT * FROM cuentas c WHERE c.usuario='" + idUsuario + "'";
+            String queryString = "SELECT c.* FROM cuentas c inner join usuarios u "
+                    + "on u.idInicio=c.usuario WHERE u.nombreInicio='" + usuario.getNombreInicio() + "'";
             Query query = sesion.createSQLQuery(queryString);
             List<Object[]> cuentas = query.list();
             return cuentas;
