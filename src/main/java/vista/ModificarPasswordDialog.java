@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.Aes;
 import javax.swing.JOptionPane;
 import modelo.Usuarios;
 
@@ -15,6 +16,7 @@ import modelo.Usuarios;
 public class ModificarPasswordDialog extends javax.swing.JDialog {
 
     Usuarios usuario;
+    Aes aes;
     MainFrame mainFrame;
     /**
      * Creates new form ModificarPasswordDialog
@@ -100,7 +102,8 @@ public class ModificarPasswordDialog extends javax.swing.JDialog {
 
     private void cambiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarButtonActionPerformed
         if(mainFrame.controller.login(usuario.getNombreInicio(), actualTextField.getText())){
-            usuario.setPassInicio(nuevaTextfield.getText());
+            String newPass = aes.encrypt(nuevaTextfield.getText());
+            usuario.setPassInicio(newPass);
             mainFrame.controller.modificarUsuario(usuario);
             this.setVisible(false);
         } else {

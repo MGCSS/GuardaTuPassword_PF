@@ -19,7 +19,7 @@ public class Inicio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, Exception {
         ManejaUsuario mu = new ManejaUsuario();
         //Usuarios usuario = new Usuarios("pepe", "pepe"); 
         //mu.guardaUsuario(usuario); 
@@ -38,10 +38,12 @@ public class Inicio {
             System.out.println(r.get(i)[2]);
         }*/
         
-        Cuentas c = new Cuentas();
-        System.out.println(mu.obtenCuenta("githubjuan").getDescripcion());
+        /*Cuentas c = new Cuentas();
+        System.out.println(mu.obtenCuenta("githubjuan").getDescripcion());*/
         
-        System.out.println(mu.login(usuario1.getNombreInicio(), usuario1.getPassInicio()));
+        //System.out.println(mu.login(usuario1.getNombreInicio(), "passcarlos"));
+
+       
         
         
     }

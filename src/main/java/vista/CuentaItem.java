@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.Aes;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Cuentas;
 
 /**
@@ -15,16 +18,24 @@ public class CuentaItem extends javax.swing.JPanel {
 
     MainFrame mainFrame;
     Cuentas cuenta;
+    Aes aes;
+
     /**
      * Creates new form CuentaItem
      */
     public CuentaItem(MainFrame mainFrame, Cuentas cuenta) {
         initComponents();
-        this.mainFrame=mainFrame;
-        this.cuenta=cuenta;
+        this.mainFrame = mainFrame;
+        this.cuenta = cuenta;
         this.descripcion.setText(cuenta.getDescripcion());
         this.usuario.setText(cuenta.getNombre());
-        this.pass.setText(cuenta.getPass());
+        aes = new Aes();
+        try {
+            String pass = aes.decrypt(cuenta.getPass());
+            this.pass.setText(pass);
+        } catch (Exception ex) {
+            Logger.getLogger(CuentaItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

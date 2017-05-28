@@ -14,26 +14,26 @@ import modelo.Cuentas;
  * @author drap
  */
 public class AppPanel extends javax.swing.JPanel {
-    
+
     MainFrame mainFrame;
-    
+
     /**
      * Creates new form AppPanel
+     *
      * @param mainFrame
      */
     public AppPanel(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
     }
-    
-    public void mostrarCuentas(List<Object[]> cuentas){
+
+    public void mostrarCuentas(List<Object[]> cuentas) {
         this.cuentasPanel.removeAll();
         cuentasPanel.setLayout(new GridLayout(cuentas.size(), 1));
         System.out.println("Cuentas");
-        for(int i=0;i<cuentas.size();i++)
-        {
-            Object[] o=cuentas.get(i);
-            Cuentas cuenta=mainFrame.controller.obtenCuenta((String)o[2]);
+        for (int i = 0; i < cuentas.size(); i++) {
+            Object[] o = cuentas.get(i);
+            Cuentas cuenta = mainFrame.controller.obtenCuenta((String) o[2]);
             CuentaItem cuentaItem = new CuentaItem(mainFrame, cuenta);
             cuentasPanel.add(cuentaItem);
             System.out.println(o[1]);
@@ -54,9 +54,11 @@ public class AppPanel extends javax.swing.JPanel {
         cuentasPanel = new javax.swing.JPanel();
         añadirButton = new javax.swing.JButton();
         modificarUsuarioButton = new javax.swing.JButton();
+        salirButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel1.setText("Cuentas guardadas:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Mis Cuentas");
 
         javax.swing.GroupLayout cuentasPanelLayout = new javax.swing.GroupLayout(cuentasPanel);
         cuentasPanel.setLayout(cuentasPanelLayout);
@@ -66,10 +68,10 @@ public class AppPanel extends javax.swing.JPanel {
         );
         cuentasPanelLayout.setVerticalGroup(
             cuentasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGap(0, 319, Short.MAX_VALUE)
         );
 
-        añadirButton.setText("Añadir");
+        añadirButton.setText("Nueva");
         añadirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 añadirButtonActionPerformed(evt);
@@ -83,34 +85,42 @@ public class AppPanel extends javax.swing.JPanel {
             }
         });
 
+        salirButton.setForeground(new java.awt.Color(255, 0, 0));
+        salirButton.setText("Salir");
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cuentasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 112, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(modificarUsuarioButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(añadirButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(añadirButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(salirButton)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addComponent(cuentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificarUsuarioButton)
                     .addComponent(añadirButton)
-                    .addComponent(modificarUsuarioButton)))
+                    .addComponent(salirButton)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -119,12 +129,11 @@ public class AppPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -139,6 +148,10 @@ public class AppPanel extends javax.swing.JPanel {
         mainFrame.goToAñadirCuenta();
     }//GEN-LAST:event_añadirButtonActionPerformed
 
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_salirButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton añadirButton;
@@ -146,5 +159,6 @@ public class AppPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modificarUsuarioButton;
+    private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
 }
