@@ -1,8 +1,13 @@
 package controlador;
 
+import org.apache.commons.codec.binary.Base64;
 import modelo.*;
 import org.hibernate.*;
 import java.util.List;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import static jdk.nashorn.internal.objects.NativeFunction.function;
+import static org.apache.commons.codec.binary.Base64.decodeBase64;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
@@ -27,7 +32,7 @@ public class ManejaUsuario {
     }
 
     /**
-     * Almacena un nuevo usuario en la aplición.
+     * Almacena un nuevo usuario en la apliciÃ³n.
      *
      * @param usuario
      */
@@ -98,16 +103,18 @@ public class ManejaUsuario {
             finalizaOperacion();
         }
     }
-    
-    public Boolean login(String nombre, String password){
+
+    public Boolean login(String nombre, String password) {
         try {
             inicioOperacion();
-            String queryString = "SELECT * FROM usuarios u WHERE u.nombreInicio='" + nombre + "' AND u.passInicio='" + password + "'";
+            Aes aes = new Aes();
+            String pass = aes.encrypt(password);
+            String queryString = "SELECT * FROM usuarios u WHERE u.nombreInicio='" + nombre + "' AND u.passInicio='" + pass + "'";
             Query query = sesion.createSQLQuery(queryString);
             List<Object[]> cuentas = query.list();
-            if(cuentas.isEmpty()){
+            if (cuentas.isEmpty()) {
                 return false;
-            }else{
+            } else {
                 return true;
             }
         } catch (HibernateException he) {
@@ -116,6 +123,7 @@ public class ManejaUsuario {
             finalizaOperacion();
         }
     }
+
     /**
      * Obtiene todas las cuentas almacenadas de un usuario.
      *
@@ -207,6 +215,7 @@ public class ManejaUsuario {
             finalizaOperacion();
         }
     }
+
 
     public void finalizaOperacion() {
         tran.commit();

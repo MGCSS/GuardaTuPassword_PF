@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.Aes;
 import controlador.Inicio;
 import controlador.ManejaUsuario;
 import java.awt.BorderLayout;
@@ -26,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     ModificarPasswordDialog modificarPasswordDialog;
     AñadirCuenta añadirCuenta;
     Usuarios usuario;
+    Aes aes;
     /**
      * Creates new form MainFrame
      */
@@ -96,7 +98,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.revalidate();
     }
     
-    public void registrar(String usuario, String pass){
+    public void registrar(String usuario, String password){
+        String pass = aes.encrypt(password);
         Usuarios usuarios = new Usuarios(usuario, pass);
         controller.guardaUsuario(usuarios);
         this.remove(registroPanel);
